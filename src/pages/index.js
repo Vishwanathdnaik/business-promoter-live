@@ -1,34 +1,42 @@
-import Head from "next/head";
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabaseClient'
 
 export default function Home() {
-  return (
-    <>
-      <Head>
-        <title>Business Promoter India</title>
-        <meta name="description" content="Free classifieds & promotions" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+  const [services, setServices] = useState([])
+  const [loading, setLoading] = useState(true)
 
-      <main style={{ textAlign: "center", padding: "4rem" }}>
-        <h1>🚀 Welcome to BusinessPromoter.co.in</h1>
-        <p>Your #1 platform for classified listings, leads & SEO promotions.</p>
-        <a
-          href="https://wa.me/917892611988"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            background: "#25D366",
-            color: "#fff",
-            padding: "12px 20px",
-            borderRadius: "8px",
-            display: "inline-block",
-            marginTop: "2rem",
-            textDecoration: "none"
-          }}
-        >
-          Chat on WhatsApp 💬
-        </a>
-      </main>
-    </>
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase.from('services').select('*')
+      if (error) {
+        console.error('❌ Error fetching services:', error)
+      } else {
+        setServices(data)
+      }
+      setLoading(false)
+    }
+
+    fetchData()
+  }, [])
+
+  return (
+    <div style={{ padding: '30px', fontFamily: 'Arial' }}>
+      <h1>🚀 Welcome to <span style={{ color: '#00df9a' }}>BusinessPromoter.co.in</span></h1>
+      <p>Your #1 platform for classified listings, leads & SEO promotions.</p>
+
+      {loading ? (
+        <p>🔄 Loading services...</p>
+      ) : services.length === 0 ? (
+        <p>⚠️ No services found.</p>
+      ) : (
+        <ul style={{ marginTop: '20px' }}>
+          {services.map(service => (
+            <li key={service.id} style={{ marginBottom: '10px' }}>
+              <strong>{service.name}</strong>: {service.description}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
 }
