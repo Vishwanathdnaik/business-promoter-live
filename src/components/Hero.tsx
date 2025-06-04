@@ -1,5 +1,5 @@
 // src/components/Hero.tsx
-import { Hero } from 'composable-ui';
+import Hero from 'composable-ui';
 
 export default function MyHero() {
   return (
