@@ -1,32 +1,24 @@
 // src/components/ServicesList.tsx
-'use client'
-import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabaseClient'
+import React from 'react'
+
+const services = [
+  { id: 1, name: "Digital Marketing", price: "₹1499", description: "SEO & Google Ads setup" },
+  { id: 2, name: "Website Audit", price: "₹999", description: "Technical & UX review" },
+];
 
 export default function ServicesList() {
-  const [services, setServices] = useState([])
-
-  useEffect(() => {
-    const fetchServices = async () => {
-      const { data, error } = await supabase.from('services').select('*')
-      if (error) console.error(error)
-      else setServices(data)
-    }
-
-    fetchServices()
-  }, [])
-
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Available Services</h2>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {services.map((item) => (
-          <div key={item.id} className="border p-4 rounded shadow">
-            <h3 className="text-lg font-semibold">{item.name}</h3>
-            <p className="text-sm text-gray-500">₹{item.price}</p>
+    <section className="p-6">
+      <h2 className="text-2xl font-bold mb-4">📋 Services</h2>
+      <div className="grid gap-4">
+        {services.map((service) => (
+          <div key={service.id} className="p-4 bg-white shadow rounded">
+            <h3 className="text-lg font-semibold">{service.name}</h3>
+            <p>{service.description}</p>
+            <span className="text-sm text-green-700">{service.price}</span>
           </div>
         ))}
       </div>
-    </div>
-  )
+    </section>
+  );
 }
