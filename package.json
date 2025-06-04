@@ -8,9 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.5",
+    "composable-ui": "^1.0.24",
     "next": "15.3.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@supabase/supabase-js": "^2.39.5"
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.8",
+    "@types/react": "19.1.6",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.8",
+    "typescript": "5.8.3"
   }
 }
