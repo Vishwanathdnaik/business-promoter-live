@@ -1,11 +1,11 @@
-// ✅ File: src/components/Hero.tsx
+// src/components/Hero.tsx
+import React from 'react'
+
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-4 text-center">
-      <h1 className="text-5xl font-extrabold mb-4">Welcome to Business Promoter Hub</h1>
-      <p className="text-lg max-w-2xl mx-auto">
-        Find, connect, and promote your business services. Simplified, elegant and fast.
-      </p>
+    <section className="p-10 bg-blue-600 text-white text-center">
+      <h1 className="text-4xl font-bold">Business Promoter Hub 🚀</h1>
+      <p className="mt-2 text-lg">Your one-stop platform for digital services</p>
     </section>
-  );
+  )
 }
