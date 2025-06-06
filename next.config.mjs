@@ -1,8 +1,6 @@
-// next.config.mjs
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
-
-export default nextConfig
+  output: 'export',
+  basePath: '/<REPO_NAME>', // <== update this!
+  trailingSlash: true
+};
+export default nextConfig;
